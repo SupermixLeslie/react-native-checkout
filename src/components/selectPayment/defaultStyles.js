@@ -17,6 +17,9 @@ export default {
   applePayContainer: {
     marginLeft: 10,
   },
+  applePayOuterContainer: {
+    ...touchableOpacityContainer,
+  },
   nodaContainer: {
     marginLeft: 10,
     justifyContent: 'center',
