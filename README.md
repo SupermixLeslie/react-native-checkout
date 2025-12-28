@@ -70,6 +70,19 @@ You can merge in your own styles. See the [default styles](src/components/addCar
   <SelectPayment
     enableApplePay={true} // optional, default: false
     applePayHandler={() => console.log('apple pay happened')} // optional
+    enableNoda={true} // optional, default: false, enables Noda payment option
+    nodaHandler={(credentials) => {
+      // Handle Noda payment with credentials
+      // credentials object contains API keys and authentication details
+      console.log('Noda payment initiated with credentials:', credentials)
+      // Perform Noda payment API call here
+    }} // optional, handler for Noda payment
+    nodaCredentials={{
+      apiKey: 'your-noda-api-key',
+      apiSecret: 'your-noda-api-secret',
+      // Add any other required authentication details
+      merchantId: 'your-merchant-id',
+    }} // optional, credentials object for Noda authentication
     paymentSources={[
       {last4: '1234', brand: 'American Express', more: 'stuff' },
       {last4: '2345', brand: 'Visa', more: 'stuff' },
@@ -84,6 +97,31 @@ You can merge in your own styles. See the [default styles](src/components/addCar
 #### Custom styling
 
 You can merge in your own styles. See the [default styles](src/components/selectPayment/defaultStyles.js) for details.
+
+#### Noda Payment Integration
+
+The Noda payment integration allows you to accept payments through the Noda payment gateway. To use Noda:
+
+1. **Enable Noda**: Set `enableNoda={true}` in the SelectPayment component
+2. **Provide Credentials**: Pass your Noda API credentials via the `nodaCredentials` prop:
+   ```javascript
+   nodaCredentials={{
+     apiKey: 'your-noda-api-key',
+     apiSecret: 'your-noda-api-secret',
+     merchantId: 'your-merchant-id',
+     // Add any other authentication details required by Noda
+   }}
+   ```
+3. **Implement Handler**: The `nodaHandler` function receives the credentials object and should handle the payment flow:
+   ```javascript
+   nodaHandler={(credentials) => {
+     // Use credentials to authenticate with Noda API
+     // Process the payment through Noda
+     // Return a promise or handle the response
+   }}
+   ```
+
+**Note**: The Noda integration maintains backward compatibility. If you don't set `enableNoda`, the component works exactly as before without any Noda-specific functionality.
 
 ### Adding cards to Stripe
 
