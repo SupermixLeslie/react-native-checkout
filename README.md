@@ -1,6 +1,6 @@
 # react-native-checkout [![CircleCI](https://circleci.com/gh/z-dev/react-native-checkout.svg?style=svg)](https://circleci.com/gh/z-dev/react-native-checkout) [![npm version](https://badge.fury.io/js/react-native-checkout.svg)](https://badge.fury.io/js/react-native-checkout)
 
-Checkout component with validation for React Native (iOS and Android). Supports Stripe, Apple Pay. You can override the entire style for the components.
+Checkout component with validation for React Native (iOS and Android). Supports Stripe, Apple Pay, and Noda Open Banking. You can override the entire style for the components.
 
 #### Add Cards
 ![](https://media.giphy.com/media/l4FGDkIm9QzGEJzMY/giphy.gif)
@@ -70,6 +70,8 @@ You can merge in your own styles. See the [default styles](src/components/addCar
   <SelectPayment
     enableApplePay={true} // optional, default: false
     applePayHandler={() => console.log('apple pay happened')} // optional
+    enableNoda={true} // optional, default: false
+    nodaHandler={() => console.log('noda open banking happened')} // optional
     paymentSources={[
       {last4: '1234', brand: 'American Express', more: 'stuff' },
       {last4: '2345', brand: 'Visa', more: 'stuff' },
@@ -84,6 +86,22 @@ You can merge in your own styles. See the [default styles](src/components/addCar
 #### Custom styling
 
 You can merge in your own styles. See the [default styles](src/components/selectPayment/defaultStyles.js) for details.
+
+### Open Banking with Noda
+
+Enable Noda open banking payments for direct bank-to-bank transfers.
+
+```
+  import { SelectPayment } from 'react-native-stripe-checkout'
+
+  <SelectPayment
+    enableNoda={true} // optional, default: false
+    nodaHandler={() => console.log('noda payment initiated')} // optional
+    {/* Other props from SelectPayment */ }
+  />
+```
+
+The `nodaHandler` will be called when the user selects the Noda open banking option. You should implement the payment flow according to [Noda's API documentation](https://noda.live/plugins), typically involving redirecting the user to their bank for authentication and authorization.
 
 ### Adding cards to Stripe
 

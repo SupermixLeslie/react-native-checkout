@@ -17,6 +17,17 @@ export default {
   applePayContainer: {
     marginLeft: 10,
   },
+  nodaContainer: {
+    marginLeft: 10,
+  },
+  nodaInnerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  nodaText: {
+    fontWeight: bold,
+    color: '#000',
+  },
   cardBrandImage: {
     marginRight: 8,
   },
