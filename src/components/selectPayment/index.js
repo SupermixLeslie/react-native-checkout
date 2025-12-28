@@ -10,6 +10,9 @@ export default class SelectPayment extends Component {
   static propTypes = {
     enableApplePay: PropTypes.bool,
     applePayHandler: PropTypes.func,
+    enableNoda: PropTypes.bool,
+    nodaHandler: PropTypes.func,
+    nodaCredentials: PropTypes.object,
     paymentSources: PropTypes.array,
     addCardHandler: PropTypes.func.isRequired,
     selectPaymentHandler: PropTypes.func.isRequired,
@@ -19,6 +22,7 @@ export default class SelectPayment extends Component {
 
   static defaultProps = {
     enableApplePay: false,
+    enableNoda: false,
     paymentSources: [],
     addNewCardText: 'Add New Card',
   }
@@ -32,6 +36,9 @@ export default class SelectPayment extends Component {
           selectPaymentHandler={this.props.selectPaymentHandler}
           applePayHandler={this.props.applePayHandler}
           enableApplePay={this.props.enableApplePay}
+          nodaHandler={this.props.nodaHandler}
+          enableNoda={this.props.enableNoda}
+          nodaCredentials={this.props.nodaCredentials}
           styles={styles}
         />
         <TouchableOpacity style={styles.addButton} styles={styles} onPress={() => this.props.addCardHandler()} last>
